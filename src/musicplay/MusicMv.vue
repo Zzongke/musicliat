@@ -1,5 +1,5 @@
 <template>
-    <div style="display:flex;justify-content:center;"  v-if="musicmv.data.url !== null">
+    <div style="display:flex;justify-content:center;">
         <video :src="musicmv.data.url" style="width:100%;" controls></video>
     </div>
 </template>

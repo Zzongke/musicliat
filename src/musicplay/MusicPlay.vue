@@ -2,12 +2,7 @@
   <div>
     <div v-if="singermp3.data[0]">
           <music-lyric/>
-          <audio controls v-if="singermp3.data[0].url !== null">
-              <source :src="singermp3.data[0].url" type="audio/mpeg">
-          </audio>
-          <div v-else style="text-align:center;">
-            没有内容
-          </div>
+          <audio ref="player" :src="singermp3.data[0].url" controls></audio>
           <music-mv/>
     </div>
   </div>
@@ -29,7 +24,7 @@ export default {
        return {
            singermp3:{
                data:{}
-           }
+           },
        }
     },
     created(){
@@ -46,7 +41,7 @@ export default {
     computed:{
     },
     methods:{
-    },
+    }
 }
 </script>
 
