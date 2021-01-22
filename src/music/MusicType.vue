@@ -34,10 +34,7 @@
 
 <style scoped>
 	.music-tab{
-		position: fixed;
 		width: calc(100% - 40px);
-		left: 0;
-		top: 0;
 		display: flex;
 		line-height: 30px;
 		padding: 0 20px;

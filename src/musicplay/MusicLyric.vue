@@ -22,7 +22,7 @@ export default {
        return {
            musiclyric:{
            },
-           lyricdd:{},
+           lyricdd:[],
            keyArr:[],
            currentTime:null,
            durationTime:null,
@@ -38,13 +38,13 @@ export default {
     },
     created(){
         request({
-            url:"/lyric?id=33894312",
+            url:"/lyric?id=" + this.$route.params.songerid,
             methods:"get"
         }).then(res => {
-            // console.log(res.data)
+            console.log(res.data)
             // this.musiclyric = res.data;
-            var lyricd = res.data.lrc;
-            var lyrics = lyricd.lyric.split("\n");
+            var lyricdd = res.data.lrc;
+            var lyrics = lyricdd.lyric.split("\n");
             var lrcObj = {};
             for(var i = 0;i < lyrics.length;i++){
               var lyric = decodeURIComponent(lyrics[i]);

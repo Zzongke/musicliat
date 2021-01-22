@@ -1,6 +1,6 @@
 <template>
-	<div style="margin-top: 50px;height: 400px;overflow-x: hidden;overflow-y: auto;background-color: #ffffff;">
-		<ul>
+	<div class="wrapper" ref="wrapper" style="position:relative;height: 400px;overflow: hidden;background-color: #ffffff;">
+		<ul class="content">
 			<router-link :to="{name:'MusicPlay',params:{songerid:item.id}}" tag="li" v-for="(item,index) in items.artists" :key="index">
 				<div class="poster">
 					<img v-lazy="item.img1v1Url" :alt="item.img1v1Url">
@@ -10,6 +10,14 @@
 					<div class="author" :title="item.content">{{item.id}}</div>
 				</div>
 			</router-link>
+      <div class="pullup-tips">
+        <div v-if="!isPullUpLoad" class="before-trigger">
+          <span class="pullup-txt">Pull up and load more</span>
+        </div>
+        <div v-else class="after-trigger">
+          <span class="pullup-txt">Loading...</span>
+        </div>
+      </div>
 		</ul>
 	</div>
 </template>
@@ -17,10 +25,11 @@
 <script>
 	import {
 		request
-	} from '@/network/request'
+  } from '@/network/request'
+  import BScroll from 'better-scroll'
 
 	export default {
-		name: 'MusicList',
+    name: 'MusicList',
 		props: {
 			musictype: {
 				type: String,
@@ -31,24 +40,47 @@
 			return {
 				items: {
 					type: String,
-					artists:[]
-				},
+          artists:[],
+        },
+        scroll:null,
+        isPullUpLoad: false,
+        data:10,
 			}
-		},
+    },
+    watch:{
+      items(){
+        this.$nextTick(() => {
+          this.Scroll()
+          this.scroll.refresh()
+        })
+      }
+    },
 		created() {
-			request({
+      request({
 					url: "/artist/list?type="+ this.musictype +"&area=-1&initial=b",
 					method: 'get',
 				})
 				.then(res => {
 					// console.log(res.data);
-					this.items = res.data;
+          this.items = res.data;
 				}).catch(error => {
 					console.log(error)
 				})
-		},
+    },
+    mounted(){
+      this.Scroll()
+    },
 		methods: {
-
+      Scroll(){
+        this.scroll = new BScroll(this.$refs.wrapper,{
+          click: true,      // 配置允许点击事件
+          scrollY: true ,    // 开启纵向滚动
+          scrollbar: { // 滚动条
+            fade: true,
+          },
+          pullUpLoad: true,
+        })
+      }
 		}
 	}
 </script>
@@ -81,5 +113,9 @@
 		height:4.2em;
 		overflow:auto;
 	}
-	
+  .pullup-tips{
+    padding: 20px;
+    text-align: center;
+    color: #999;
+  }
 </style>
