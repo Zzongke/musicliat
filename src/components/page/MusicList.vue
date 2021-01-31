@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper" ref="wrapper" style="position:relative;height: 400px;overflow: hidden;background-color: #ffffff;">
+	<div class="wrapper" ref="wrapper" style="position:relative;height: 25rem;overflow: hidden;background-color: #ffffff;">
 		<ul class="content">
 			<router-link :to="{name:'MusicPlay',params:{songerid:item.id}}" tag="li" v-for="(item,index) in items.artists" :key="index">
 				<div class="poster">
@@ -56,19 +56,10 @@
       }
     },
 		created() {
-      request({
-					url: "/artist/list?type="+ this.musictype +"&area=-1&initial=b",
-					method: 'get',
-				})
-				.then(res => {
-					// console.log(res.data);
-          this.items = res.data;
-				}).catch(error => {
-					console.log(error)
-				})
+      this.Scroll()
+      this.http()
     },
     mounted(){
-      this.Scroll()
     },
 		methods: {
       Scroll(){
@@ -79,8 +70,20 @@
             fade: true,
           },
           pullUpLoad: true,
-        })
-      }
+        });
+      },
+      http(){
+        request({
+					url: "/artist/list?type="+ this.musictype +"&area=-1&initial=b",
+					method: 'get',
+				})
+				.then(res => {
+					// console.log(res.data);
+          this.items = res.data;
+				}).catch(error => {
+					console.log(error)
+				})
+      },
 		}
 	}
 </script>

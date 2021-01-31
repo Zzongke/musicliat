@@ -20,7 +20,7 @@
 			MusicType,
       Singer,
       Swiper,
-      InputLiat
+      InputLiat,
 		},
 		data(){
 			return{
@@ -31,4 +31,7 @@
 </script>
 
 <style scoped>
+.container{
+  position: relative;
+}
 </style>

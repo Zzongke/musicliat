@@ -18,8 +18,17 @@ export default {
     created(){
     },
     mounted(){
-      this.scroll = new BScroll(this.$refs.wrapper,{
-        click:true,
+      this.$nextTick(() => {
+        this.scroll = new BScroll(this.$refs.wrapper,{
+          click: true,      // 配置允许点击事件
+          scrollY: true ,    // 开启纵向滚动
+          scrollbar: { // 滚动条
+            fade: true,
+          },
+          pullUpLoad: true,
+        });
+        this.scroll.refresh();
+        this.scroll.scrollTo(0,0,500)
       })
     },
     computed:{
@@ -30,7 +39,12 @@ export default {
 </script>
 <style scoped>
 .wrapper{
-  height: 400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
   overflow: hidden;
   background-color: #ffffff;
 }

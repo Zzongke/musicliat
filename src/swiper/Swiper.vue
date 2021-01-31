@@ -113,6 +113,7 @@ export default {
   height: 8px;
   border-radius: 50%;
   background: lightblue;
+  transition: .3s;
 }
 .active{
   width: 20px;
