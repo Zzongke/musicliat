@@ -1,16 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router/index'
+import store from '@/vuex/store'
 import Axios from 'axios'
 import qs from 'qs'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import VueLazyload from 'vue-lazyload'
-import { Carousel, CarouselItem } from 'element-ui';
+import { Carousel, CarouselItem ,InfiniteScroll,Loading,Notification } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Carousel);
 Vue.use(CarouselItem);
+Vue.use(InfiniteScroll);
+Vue.use(Loading);
+
+
+Vue.prototype.$notify=Notification;
+
 
 Nprogress.configure({
 	showSpinner:false,
@@ -35,7 +42,7 @@ router.beforeEach((to,from,next) => {
 
 router.afterEach(() =>{
 	Nprogress.done();
-	window.scrollTo(0,0);
+	//window.scrollTo(0,0);
 })
 
 const server = Axios.create({
@@ -121,5 +128,6 @@ server.interceptors.response.use(response => {
 new Vue({
 	router,
 	server,
+  store,
 	render: h => h(App),
 }).$mount('#app')

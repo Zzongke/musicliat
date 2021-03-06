@@ -2,7 +2,7 @@
 	<div class="mod-songlists">
 		<div class="songlist-title">
 			<h2>热门歌单</h2>
-			<span>更多</span>
+			<router-link to="/Recomend" tag="span">更多</router-link>
 		</div>
 		<div class="container">
 			<div class="wrapper">
@@ -23,6 +23,7 @@ export default {
   data () {
     return {
       singerListdata: ["3684", "2116", "5771", "6452", "5538", "4723"],
+      highquality:5771,
     }
   }
 }

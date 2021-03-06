@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper" ref="wrapper" style="position:relative;height: 25rem;overflow: hidden;background-color: #ffffff;">
+	<div class="wrapper" ref="wrapper" style="position:relative;height: 25rem;overflow: hidden;background-color: #ffffff;" v-loading="loading">
 		<ul class="content">
 			<router-link :to="{name:'MusicPlay',params:{songerid:item.id}}" tag="li" v-for="(item,index) in items.artists" :key="index">
 				<div class="poster">
@@ -45,6 +45,7 @@
         scroll:null,
         isPullUpLoad: false,
         data:10,
+        loading:true
 			}
     },
     watch:{
@@ -80,6 +81,7 @@
 				.then(res => {
 					// console.log(res.data);
           this.items = res.data;
+          this.loading = false;
 				}).catch(error => {
 					console.log(error)
 				})

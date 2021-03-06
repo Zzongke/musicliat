@@ -22,7 +22,7 @@ export default {
        return {
            musiclyric:{
            },
-           lyricdd:[],
+           lyricdd:{},
            keyArr:[],
            currentTime:null,
            durationTime:null,

@@ -12,6 +12,7 @@ module.exports = {
 					"^/api":''
 				}
 			}
-		}
+		},
+    historyApiFallback: true
 	}
 }

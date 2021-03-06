@@ -20,22 +20,30 @@ export default {
     name:"SingerList",
     data() {
        return {
-           singerid:{
-               type:String,
-               default:false
-           }
+           singerid:{}
        }
     },
     created(){
-        request({
-				url:"/artist/mv?id="+ this.$route.params.singerid,
-				method:'get'
-			}).then(res => {
-				this.singerid = res.data;
-				// console.log(res.data)
-			}).catch(err => {
-				console.log(err)
-			})
+      request({
+        url:"/artist/mv?id="+ this.$route.params.singerid,
+        method:'get'
+      }).then(res => {
+        this.singerid = res.data;
+        // console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    activated(){
+      request({
+        url:"/artist/mv?id="+ this.$route.params.singerid,
+        method:'get'
+      }).then(res => {
+        this.singerid = res.data;
+        // console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
     },
     computed:{
     },

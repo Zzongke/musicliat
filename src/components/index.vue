@@ -3,7 +3,9 @@
     <input-liat/>
     <swiper/>
 		<music-type/>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
 		<singer/>
 	</div>
 </template>
